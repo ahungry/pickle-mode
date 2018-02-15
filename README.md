@@ -1,6 +1,6 @@
 # pickle-mode - An Emacs major-mode for Gherkin (Cucumber) type files.
 
-![gherkin](https://raw.githubusercontent.com/ahungry/pickle-mode/master/img/pickle-mode.png)
+![gherkin](https://raw.githubusercontent.com/ahungry/pickle-mode/master/pickle-mode.png)
 
 # License
 
