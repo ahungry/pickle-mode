@@ -46,16 +46,9 @@
 (defvar pickle-mode-hook nil)
 (defvar pickle-mode-default-tab-width 2)
 
-(defvar pickle-mode-compile-function
-  (lambda (module-name)
-    (cl-concatenate 'string "mmc --make " module-name))
-  "Command that when given MODULE-NAME (hello.m module-name would be hello) will compile the mercury file.")
-
 (defvar pickle-mode-map
   (let ((map (make-keymap)))
     (define-key map "\C-j" 'newline-and-indent)
-    (define-key map (kbd "C-c C-c") 'pickle-mode-compile)
-    (define-key map (kbd "C-c C-r") 'pickle-mode-runner)
     map)
   "Keymap for metal mercury major mode.")
 
@@ -78,6 +71,7 @@
   (use-local-map pickle-mode-map)
   (set (make-local-variable 'font-lock-defaults)
        '(pickle-mode-font-lock-keywords-1))
+  ;; todo: Add custom indentation rules
   ;; (set (make-local-variable 'indent-line-function)
   ;;      'pickle-mode-indent-line)
   (setq major-mode 'pickle-mode)
@@ -85,9 +79,10 @@
   (run-hooks 'pickle-mode-hook))
 
 ;;;###autoload
-(progn
-  (add-to-list 'auto-mode-alist '("\\.feature\\'" . pickle-mode))
-  )
+(defun pickle-config ()
+  "Default pickle setup and bindings."
+  (interactive)
+  (add-to-list 'auto-mode-alist '("\\.feature\\'" . pickle-mode)))
 
 (provide 'pickle)
 
