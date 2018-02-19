@@ -43,14 +43,7 @@
 
 (require 'cl-lib)
 
-(defvar pickle-mode-hook nil)
 (defvar pickle-mode-default-tab-width 2)
-
-(defvar pickle-mode-map
-  (let ((map (make-keymap)))
-    (define-key map "\C-j" 'newline-and-indent)
-    map)
-  "Keymap for metal mercury major mode.")
 
 (defconst pickle-mode-font-lock-keywords-1
   (list
@@ -63,20 +56,12 @@
    '(") is \\(\\w+\\)" 1 font-lock-preprocessor-face)
    ))
 
-(defun pickle-mode ()
-  "Major mode for editing mercury files."
-  (interactive)
-  (kill-all-local-variables)
-  ;; (set-syntax-table pickle-mode-syntax-table)
-  (use-local-map pickle-mode-map)
+;;;###autoload
+(define-derived-mode pickle-mode text-mode "Pickle" ()
+  "Major mode for editing Gherkin (Cucumber) files."
+  :group 'languages
   (set (make-local-variable 'font-lock-defaults)
-       '(pickle-mode-font-lock-keywords-1))
-  ;; todo: Add custom indentation rules
-  ;; (set (make-local-variable 'indent-line-function)
-  ;;      'pickle-mode-indent-line)
-  (setq major-mode 'pickle-mode)
-  (setq mode-name "pickle")
-  (run-hooks 'pickle-mode-hook))
+       '(pickle-mode-font-lock-keywords-1)))
 
 ;;;###autoload
 (defun pickle-config ()
