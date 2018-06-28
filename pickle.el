@@ -77,6 +77,7 @@
                 (progn
                   (setq cur-indent (+ default-tab-width (current-indentation)))
                   (setq not-indented nil))
+              (if (bobp) (setq not-indented nil))
               )))
         )
       (if cur-indent (indent-line-to cur-indent) (indent-line-to 0))))
