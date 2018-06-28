@@ -56,10 +56,37 @@
    '(") is \\(\\w+\\)" 1 font-lock-preprocessor-face)
    ))
 
+(defvar default-tab-width 2)
+
+;; This is easy because the syntax just cascades the indent until it
+;; resets to 0 again.  No need to go back one level at a time etc.
+(defun pickle-indent-line ()
+  "Properly indent based on what we're looking at."
+  (interactive)
+  (beginning-of-line)
+  (if (bobp)
+      (indent-line-to 0)
+    (let ((not-indented t)
+          cur-indent)
+      (if (looking-at "^[ \t]*Feature:")
+          (setq cur-indent 0)
+        (save-excursion
+          (while not-indented
+            (forward-line -1)
+            (if (looking-at "^[ \t]*\\(Feature\\|Scenario\\):")
+                (progn
+                  (setq cur-indent (+ default-tab-width (current-indentation)))
+                  (setq not-indented nil))
+              )))
+        )
+      (if cur-indent (indent-line-to cur-indent) (indent-line-to 0))))
+  )
+
 ;;;###autoload
 (define-derived-mode pickle-mode text-mode "Pickle" ()
   "Major mode for editing Gherkin (Cucumber) files."
   :group 'languages
+  (set (make-local-variable 'indent-line-function) 'pickle-indent-line)
   (set (make-local-variable 'font-lock-defaults)
        '(pickle-mode-font-lock-keywords-1)))
 
