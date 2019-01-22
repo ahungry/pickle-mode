@@ -47,6 +47,7 @@
 
 (defconst pickle-mode-font-lock-keywords-1
   (list
+   '("#.*" . font-lock-comment-face)
    '(" \"\\(.*?\\)\" " . font-lock-variable-name-face)
    '("\\(When\\|Then\\|Given\\)" . font-lock-keyword-face)
    '("\\(\\w+\\)(" 1 font-lock-function-name-face)
