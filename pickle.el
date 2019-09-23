@@ -1,13 +1,13 @@
 ;;; pickle.el --- Major mode for editing cucumber gherkin files.  -*- lexical-binding: t -*-
 
-;; Copyright (C) 2018 Matthew Carter <m@ahungry.com>
+;; Copyright (C) 2018-2019 Matthew Carter <m@ahungry.com>
 
 ;; Author: Matthew Carter <m@ahungry.com>
 ;; Maintainer: Matthew Carter <m@ahungry.com>
 ;; URL: https://github.com/ahungry/pickle-mode
-;; Version: 0.0.2
+;; Version: 0.0.3
 ;; Date: 2018-02-15
-;; Keywords: languages, cucumber, gherkin
+;; Keywords: ahungry languages cucumber gherkin
 ;; Package-Requires: ((emacs "25.1") (cl-lib "0.6.1"))
 
 ;; This file is NOT part of GNU Emacs.
@@ -29,13 +29,12 @@
 
 ;; A major mode for handling Gherkin files and syntax highlighting.
 ;;
-;; General Remarks:
+;; This mode is not coupled to an underlying Cucumber system such as feature-mode.
 ;;
-;; XXX: This mode assumes that block comments are not nested inside block
-;; XXX: comments
+;; If you want a full-fledged IDE like experience, see: feature-mode (no affiliation).
 ;;
-;; Exported names start with "pickle-"; private names start with
-;; "pickle--".
+;; If you just want syntax highlighting in a lightweight mode, use this.
+;;
 
 ;;; Code:
 
